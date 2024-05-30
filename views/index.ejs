@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css\style.css" />
+    <title>login or signup</title>
+  </head>
+  <body>
+    <div class="container">
+      <img src="img\clogo.png" alt="..." style="margin-top: 10px; margin-left: 5px; width: 5%; height: 8%;"/>
+      <h1>Libyan International Technology Day - Zuwara</h1>
+      <img src="img\ind.png" alt="..." style="margin-top: 10px; margin-left: 5px; width: 10%; height: 10%;"/>
+    </div>
+    <div class="video-bg" loop>
+      <div class="overlay"></div>
+      <video autoplay loop muted>
+        <source src="videos/vd.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="content">
+        <div class="wrapper">
+            <div class="card-switch">
+                <label class="switch">
+                   <input type="checkbox" class="toggle">
+                   <span class="slider"></span>
+                   <span class="card-side"></span>
+                   <div class="flip-card__inner">
+                      <div class="flip-card__front">
+                         <div class="title">تسجيل الدخول</div>
+                         <form class="flip-card__form" action="">
+                            <input class="flip-card__input" name="text" placeholder="الإسم" type="text">
+                            <input class="flip-card__input" name="password" placeholder="كلمة المرور" type="password">
+                            <button class="flip-card__btn">تأكيد</button>
+                         </form>
+                      </div>
+                      <div class="flip-card__back">
+                         <div class="title">التسجيل</div>
+                         <form class="flip-card__form" action="">
+                            <input class="flip-card__input" placeholder="الإسم" type="text">
+                            <input class="flip-card__input" name="password" placeholder="كلمة المرور" type="password">
+                            <select name="level">
+                              <option value="1">المستوى الأول</option>
+                              <option value="2">المستوى الثاني</option>
+                            </select>
+                            <button class="flip-card__btn">تأكيد</button>
+                         </form>
+                      </div>
+                   </div>
+                </label>
+            </div>   
+      </div>
+
+      
+
+      <div class="video-bg" loop>
+        <div class="overlay"></div>
+        <video autoplay loop muted>
+          <source src="videos/vd.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js\index.js"></script>
+  </body>
+</html>
