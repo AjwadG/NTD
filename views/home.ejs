@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css\sty.css" />
+    <title>Libyan International Technology Day - Zuwara</title>
+  </head>
+  <body>
+    <div class="content">
+      <div class="container">
+        <img
+          src="img\clogo.png"
+          alt="..."
+          style="margin-top: 10px; margin-left: 5px; width: 5%; height: 8%"
+        />
+        <h1>Libyan International Technology Day - Zuwara</h1>
+        <img
+          src="img\ind.png"
+          alt="..."
+          style="margin-top: 10px; margin-left: 5px; width: 10%; height: 10%"
+        />
+      </div>
+
+      <% if (locals.level) { %>
+      <h1>ابدء المسابقة</h1>
+      <br />
+      <% if (locals.level == 1) { %>
+      <div class="container">
+        <button><a href="/1">المستوى الأول</a></button>
+      </div>
+      <% } else if (locals.level == 2) { %>
+      <div class="container">
+        <button><a href="/2">المستوى الثاني</a></button>
+      </div>
+
+      <% } else if (locals.level == 3) { %>
+      <div class="container">
+        <button><a href="/3">المستوى الثالث</a></button>
+      </div>
+      <% } %> <% } else { %>
+      <h1>سجل الاان</h1>
+      <button><a href="/">Next page ^-^</a></button>
+      <% } %>
+
+      <div class="video-bg" loop>
+        <div class="overlay"></div>
+        <video autoplay loop muted>
+          <source src="videos/video.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </body>
+</html>
