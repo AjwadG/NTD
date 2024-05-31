@@ -149,7 +149,6 @@ app.get("/logout", function (req, res) {
 // Defining the level 1 route
 app.get("/1", (req, res) => {
   if (req.isAuthenticated()) {
-    console.log(req.user);
     res.render("level1.ejs");
   } else {
     res.redirect("/");
