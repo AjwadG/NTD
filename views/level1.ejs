@@ -15,38 +15,85 @@
     </div> 
     <form>
     <div class="card">
-    <h2>// السؤال</h2>
+    :ما ناتج البرنامج التالي
+    <pre style="text-align: left;">
+      <br> #include < iostream ><br> using namespace std;<br> int main(){<br> int r, x = 2;<br> float y = 5;<br> r = y%x;<br> cout<< r;
+}</pre>
     <div class="radio-input">
       <input value="1" name="group1" id="1" type="radio"required>
-      <label for="1">option 1</label>
+      <label for="1">  0  </label>
       <input value="2" name="group1" id="2" type="radio" required>
-      <label for="2">option 2</label>
+      <label for="2">  1  </label>
       <input value="3" name="group1" id="3" type="radio" required>
-      <label for="3">option 3</label>
+      <label for="3">compiler error</label>
     </div>
     </div>
     <div class="card">
-      <h2>// السؤال</h2>
+      :ما ناتج البرنامج التالي
+      <pre style="text-align: left; margin-top: 20px;">
+      <br> #include < iostream > <br> using namespace std;<br> int main(){<br> int i = 5, j = 6, k = 7, n = 3;<br> cout << i + j * k - k % n << endl;
+}</pre>
       <div class="radio-input">
         <input value="4" name="group2" id="4" type="radio" required>
-        <label for="4">option 1</label>
+        <label for="4">47</label>
         <input value="5" name="group2" id="5" type="radio" required>
-        <label for="5">option 2</label>
+        <label for="5">46</label>
         <input value="6" name="group2" id="6" type="radio" required>
-        <label for="6">option 3</label>
+        <label for="6">70</label>
       </div>
       </div>
       <div class="card">
-        <h2>// السؤال</h2>
+        :ما ناتج البرنامج التالي
+      <pre style="text-align: left; margin-top: 20px;"><br> #include < iostream ><br> using namespace std;<br> int main() {<br> int sum = 0;<br> for (int i = 1; i <= 5; i++) {<br> sum += i * i;<br> }<br> cout << sum << endl;<br> return 0;
+}</pre>
         <div class="radio-input">
           <input value="7" name="group3" id="7" type="radio" required>
-          <label for="7">option 1</label>
+          <label for="7">77</label>
           <input value="8" name="group3" id="8" type="radio" required>
-          <label for="8">option 2</label>
+          <label for="8">66</label>
           <input value="9" name="group3" id="9" type="radio" required>
-          <label for="9">option 3</label>
+          <label for="9">55</label>
         </div>
         </div>
+        <div class="card">
+          :ما ناتج البرنامج التالي
+        <pre style="text-align: left; margin-top: 20px;"><br> #include < iostream ><br> using namespace std;<br> int main(){<br> int x = 9;<br> cout << "x" << endl;
+}</pre>
+          <div class="radio-input">
+            <input value="7" name="group3" id="7" type="radio" required>
+            <label for="7">x</label>
+            <input value="8" name="group3" id="8" type="radio" required>
+            <label for="8">X</label>
+            <input value="9" name="group3" id="9" type="radio" required>
+            <label for="9">9</label>
+          </div>
+          </div>
+          <div class="card">
+            :ما ناتج البرنامج التالي
+          <pre style="text-align: left; margin-top: 20px;"><br> #include < iostream ><br> using namespace std;<br> int main() {<br> int num = -21;<br> if (num > 0) {<br> cout << "positive" << endl;}<br> else if (num < 0) {<br> cout << "negative" << endl;<br> } else {<br> cout << "zero." << endl;<br> }<br> return 0;
+}</pre>
+            <div class="radio-input">
+              <input value="7" name="group3" id="7" type="radio" required>
+              <label for="7">positive</label>
+              <input value="8" name="group3" id="8" type="radio" required>
+              <label for="8">negative</label>
+              <input value="9" name="group3" id="9" type="radio" required>
+              <label for="9">zero</label>
+            </div>
+            </div>
+            <div class="card">
+              :ما ناتج البرنامج التالي
+            <pre style="text-align: left; margin-top: 20px;"><br> #include < iostream ><br> using namespace std;<br> int main() {<br> for (int i = 1; i <= 5; i++) {<br> for (int j = 1; j <= i; j++) {<br> cout << "*";<br> }<br> cout << endl;<br> }<br> return 0;
+}</pre>
+              <div class="radio-input">
+                <input value="7" name="group3" id="7" type="radio" required>
+                <label for="7"><pre>*<br> **<br>  ***<br>   ****<br>    *****</pre></label>
+                <input value="8" name="group3" id="8" type="radio" required>
+                <label for="8"><pre>*<br>**<br>***<br>**<br>*</pre></label>
+                <input value="9" name="group3" id="9" type="radio" required>
+                <label for="9"><pre>*<br>**<br>***<br>****<br>*****</pre></label>
+              </div>
+              </div>
       </form>
       <br>
         <button class="shadow__btn">تسليم الإجابة</button>
