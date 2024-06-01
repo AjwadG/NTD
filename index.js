@@ -56,6 +56,7 @@ mongoose.connect(process.env.DB);
 const answer = {
   question: String,
   answer: String,
+  correct: Boolean,
   time: {
     type: Date,
     default: Date.now(),
@@ -79,10 +80,7 @@ userSchema.plugin(passportLocalMongoose);
 // Defining the schema for the competition data
 const question = {
   id: String,
-  question: String,
-  Options: [String],
-  code: String,
-  answer: String,
+  answer: [String],
 };
 
 const compettion = new mongoose.Schema({
@@ -147,8 +145,36 @@ app.get("/logout", function (req, res) {
 });
 
 // Defining the level 1 route
-app.get("/1", (req, res) => {
+app.get("/1", async (req, res) => {
   if (req.isAuthenticated()) {
+    const user = await User.findOne({ username: req.user.username });
+    if (user.answer.length == 12) {
+      res.redirect("/");
+    } else {
+      res.render("level1.ejs");
+    }
+  } else {
+    res.redirect("/");
+  }
+});
+app.post("/1", async (req, res) => {
+  if (req.isAuthenticated()) {
+    const comp = await Comp.findOne({ level: req.user.level });
+    const answers = [];
+    const time = Date.now();
+    const user = await User.findOne({ username: req.user.username });
+    for (let i = 1; i <= comp.question.length; i++) {
+      const answer = {
+        question: i,
+        answer: req.body[i],
+        correct: comp.question[i - 1].answer[0] == req.body[i],
+        time: time,
+      };
+      answers.push(answer);
+    }
+    console.log(answers);
+    user.answer = answers;
+    user.save();
     res.render("level1.ejs");
   } else {
     res.redirect("/");
@@ -156,39 +182,86 @@ app.get("/1", (req, res) => {
 });
 
 // Defining the level 2 route
-app.get("/2", (req, res) => {
+app.get("/2", async (req, res) => {
   if (req.isAuthenticated()) {
-    res.render("level2.ejs");
+    const user = await User.findOne({ username: req.user.username });
+    if (user.answer.length == 3) {
+      res.redirect("/");
+    } else {
+      res.render("level2.ejs");
+    }
   } else {
     res.redirect("/");
   }
 });
-
-// Defining the question route
-app.post("/que", async (req, res) => {
+app.post("/2", async (req, res) => {
   if (req.isAuthenticated()) {
     const comp = await Comp.findOne({ level: req.user.level });
+    const user = await User.findOne({ username: req.user.username });
     const id = req.body.id;
-    const level = req.user.level;
-    let compiler = req.body.compiler;
-    let code = req.body.code;
+    const compiler = req.body.compiler;
+    const code = req.body.code;
+    for (let i = 0; i < user.answer.length; i++) {
+      if (user.answer[i].question == id) {
+        return res.json({
+          compiler,
+          code,
+          data: "already answered",
+          correct: true,
+        });
+      }
+    }
     let correct = false;
-    let name = req.user.username.replace(/ /g, "_");
-    let data = await compile(compiler, code, name);
-    if (comp && data === comp.question[id - 1].answer) {
+    const name = req.user.username.replace(/ /g, "_");
+    const data = await compile(compiler, code, name);
+    const filtered = data
+      .replace(/\n/g, "")
+      .replace(/\r/g, "")
+      .replace(/ /g, "");
+    if (
+      (comp.question[id - 1].answer[0] == data ||
+        comp.question[id - 1].answer[1] == filtered) &&
+      code.indexOf(comp.question[id - 1].answer[1]) == -1
+    ) {
       correct = true;
     }
     res.json({ compiler, code, data, correct });
     if (correct) {
-      User.updateOne(
-        { username: req.user.username },
-        { $push: { answer: { question: id, answer: data, time: Date.now() } } }
-      );
+      const answer = {
+        question: id,
+        answer: data,
+        correct: true,
+        time: Date.now(),
+      };
+
+      user.answer.push(answer);
+      user.save();
     }
   } else {
     res.json({ data: "Not logged in" });
   }
 });
+
+app.get('/result', async (req, res) => {
+  if (req.isAuthenticated() && req.user.username == 'admin') {
+    const user = await User.find({})
+    user.sort((a, b) => {
+      // First criterion: number of correct answers (descending)
+      const aCorrectCount = a.answer.filter(answer => answer.correct).length;
+      const bCorrectCount = b.answer.filter(answer => answer.correct).length;
+      if (aCorrectCount !== bCorrectCount) {
+        return bCorrectCount - aCorrectCount;
+      }
+    
+      // Second criterion: maximum time in answers (ascending)
+      const aMaxTime = Math.max(...a.answer.map(answer => answer.time));
+      const bMaxTime = Math.max(...b.answer.map(answer => answer.time));
+      return aMaxTime - bMaxTime;
+    });
+    return res.render('result.ejs', { lvl1: user.filter(user => user.level == '1'), lvl2: user.filter(user => user.level == '2') })
+  }
+  res.redirect('/')
+  })
 
 // Defining the server to listen on the specified port
 app.listen(process.env.PORT, () => {

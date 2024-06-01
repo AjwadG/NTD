@@ -10,7 +10,7 @@ document.querySelectorAll(".shadow__btn").forEach((element) => {
     let code = element.parentElement.parentElement.lastChild.value;
     // Make an AJAX POST request to /que with the compiler, code, and id as data
     $.ajax({
-      url: "/que",
+      url: "/2",
       type: "POST",
       data: {
         compiler,
@@ -21,6 +21,17 @@ document.querySelectorAll(".shadow__btn").forEach((element) => {
       success: function (data) {
         element.parentElement.parentElement.parentElement.lastElementChild.firstChild.textContent =
           data.data;
+          if (data.correct) {
+            element.setAttribute("style", "background-color: green");
+            setTimeout(() => {
+              element.remove();
+              if(document.querySelectorAll(".shadow__btn").length == 0) {
+                location.reload();
+              };
+            }, 1000);
+          } else {
+            element.setAttribute("style", "background-color: red");
+          }
       },
       // If there is an error, log the data to the console
       error: function (data) {

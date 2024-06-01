@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>result</title>
+  </head>
+  <body
+    style="
+      display: flex;
+      min-height: 98vh;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      flex-direction: column;
+    "
+  >
+    <h1 style="font-size: 30px; color: black; text-align: center">lvl 1</h1>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      "
+    >
+      <% lvl1.forEach((user, i) => { %>
+      <div style="width: 100px; border: 1px solid black; padding: 5px">
+        <p style="color: black"><%= user.username %></p>
+        <p style="color: black">
+          correct: <%= user.answer.filter(answer => answer.correct).length %>
+        </p>
+        <p style="color: black">
+          time: <%= Math.max(...user.answer.map(answer => answer.time)) %>
+        </p>
+        <p>place: <%= i + 1 %></p>
+      </div>
+      <% }) %>
+    </div>
+
+    <h1 style="font-size: 30px; color: black; text-align: center">lvl 2</h1>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      "
+    >
+      <% lvl2.forEach((user, i) => { %>
+      <div style="width: 100px; border: 1px solid black; padding: 5px">
+        <p style="color: black"><%= user.username %></p>
+        <p style="color: black">
+          correct: <%= user.answer.filter(answer => answer.correct).length %>
+        </p>
+        <p style="color: black">
+          time: <%= Math.max(...user.answer.map(answer => answer.time)) %>
+        </p>
+        <p>place: <%= i + 1 %></p>
+      </div>
+      <% }) %>
+    </div>
+
+
+  </body>
+</html>
