@@ -153,6 +153,7 @@ h1 {
     font-size: 16px;
     font-weight: 600;
     color: white;
+    text-align: center;
 }
 
 .radio-input input[type="radio"] {
@@ -160,7 +161,7 @@ h1 {
 }
 
 .radio-input label {
-  margin-top: 20px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -171,6 +172,9 @@ h1 {
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease-in-out;
+    width: 100px;
+    height: 80px;
+    text-align: center;
 }
 
   
@@ -187,6 +191,7 @@ h1 {
     background-color: #fff;
     border: 2px solid #ccc;
     transition: all 0.3s ease-in-out;
+    text-align: center;
   }
   
   .radio-input input[type="radio"]:checked + label:before {
@@ -220,40 +225,23 @@ h1 {
     margin-top: 30px;
     --background: linear-gradient(to left, #1500ff4a 0%, #2e0c4f8d 100%);
     width: 700px;
-    height: 250px;
+    height: 550px;
     border-radius: 1rem;
     overflow: visible;
     background: #1500ff4a;
     background: var(--background);
     position: relative;
     z-index: 1;
+    text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 5%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
    }
    
-   .card::after {
-    margin-top: 30px;
-    position: absolute;
-    content: "";
-    top: 30px;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    transform: scale(0.8);
-    filter: blur(25px);
-    background: #08015e;
-    background: var(--background);
-    transition: opacity .5s;
-   }
 
-   .card:hover::after {
-    opacity: 0;
-   }
-   
-   .card:hover {
-    color: #08015e;
-    transition: color 1s;
-   }
+
    
    .shadow__btn {
     margin: auto;
@@ -284,4 +272,4 @@ h1 {
                 0 0 50px rgb(63, 40, 105),
                 0 0 100px rgb(63, 40, 105);
   }
-  
+ 
